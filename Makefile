@@ -1,8 +1,8 @@
 all: gen build test
 
 gen:
-	curl -s https://discoveryprovider3.audius.co/v1/swagger.json | jq . > ./swagger/discovery.json
-	curl -s https://discoveryprovider3.audius.co/v1/full/swagger.json | jq . > ./swagger/discoveryFull.json
+	swagger generate model --skip-validation -f https://discoveryprovider3.audius.co/v1/swagger.json -m models -t ./gen/discovery
+	swagger generate model --skip-validation -f https://discoveryprovider3.audius.co/v1/full/swagger.json -m models -t ./gen/discoveryFull
 
 build:
 	go build
