@@ -6,14 +6,13 @@ import "github.com/go-resty/resty/v2"
 type DiscoveryNode struct {
 	DiscoveryNodes []string
 	SelectedNode string
-	client *resty.Client
+	discoveryClient *resty.Client
+	discoveryFullClient *resty.Client
+	storageClient *resty.Client
 }
 
-func NewDiscoveryNode(selectedNode *string) *DiscoveryNode {
-	if (selectedNode != nil) {
-		var discoveryNodes []string
-		return &DiscoveryNode{ DiscoveryNodes: discoveryNodes, SelectedNode: *selectedNode }
-	}
+func NewDiscoveryNode(selectedNode string) *DiscoveryNode {
 	var discoveryNodes []string
-	return &DiscoveryNode{ DiscoveryNodes: discoveryNodes, SelectedNode: "https://discoveryprovider3.audius.co" }
+
+	return &DiscoveryNode{ DiscoveryNodes: discoveryNodes, SelectedNode: selectedNode }
 }
