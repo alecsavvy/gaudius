@@ -6,9 +6,9 @@ import "github.com/go-resty/resty/v2"
 type DiscoveryNode struct {
 	DiscoveryNodes []string
 	SelectedNode string
+
 	discoveryClient *resty.Client
 	discoveryFullClient *resty.Client
-	storageClient *resty.Client
 }
 
 func NewDiscoveryNode(selectedNode string) *DiscoveryNode {
