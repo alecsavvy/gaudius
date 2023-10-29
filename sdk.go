@@ -6,7 +6,7 @@ type AudiusSdk struct {
 }
 
 func NewSdk() *AudiusSdk {
-	discovery := NewDiscoveryNode("https://discoveryprovider3.audius.co/")
-	storage := NewStorageNode()
+	discovery := NewDiscoveryNode("https://discoveryprovider3.audius.co")
+	storage := NewStorageNode("https://creatornode.audius.co")
 	return &AudiusSdk{ Discovery: discovery, Storage: storage}
 }

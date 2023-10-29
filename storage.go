@@ -19,7 +19,7 @@ type StorageNode struct {
 	client *resty.Client
 }
 
-func NewStorageNode() *StorageNode {
+func NewStorageNode(selectedNode string) *StorageNode {
 	var storageNodes []StorageNodeConfig
-	return &StorageNode{ StorageNodes: storageNodes, SelectedNode: &StorageNodeConfig{ Endpoint: "https://creatornode.audius.co", DelegateOwnerWallet: "0xc8d0C29B6d540295e8fc8ac72456F2f4D41088c8"} }
+	return &StorageNode{ StorageNodes: storageNodes, SelectedNode: &StorageNodeConfig{ Endpoint: selectedNode, DelegateOwnerWallet: ""} }
 }
