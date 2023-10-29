@@ -27,4 +27,8 @@ func TestUsers(t *testing.T) {
 	users, err := sdk.UserSearch("LemonadeJetpack")
 	assert.Nil(t, err)
 	assert.EqualValues(t, userID, *users[0].ID)
+
+	apps, err := sdk.GetUserAuthorizedApps(userID)
+	assert.Nil(t, err)
+	assert.NotEmpty(t, apps)
 }

@@ -64,3 +64,18 @@ func (sdk *AudiusSdk) UserSearch(query string) ([]*models.User, error) {
 
 	return user.Data, nil
 }
+
+func (sdk *AudiusSdk) GetUserAuthorizedApps(id string) ([]*models.AuthorizedApp, error) {
+	dn := sdk.Discovery
+	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s/authorized_apps", id))
+	if err != nil {
+		return nil, err
+	}
+	var apps models.AuthorizedApps
+	err = apps.UnmarshalBinary(res.Body())
+	if err != nil {
+		return nil, err
+	}
+
+	return apps.Data, nil
+}
