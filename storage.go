@@ -1,6 +1,8 @@
 package gaudius
 
-import "github.com/go-resty/resty/v2"
+import (
+	"github.com/go-resty/resty/v2"
+)
 
 type StorageNodeConfig struct {
 	Endpoint string

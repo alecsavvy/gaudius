@@ -1,6 +1,10 @@
 package gaudius
 
-import "github.com/go-resty/resty/v2"
+import (
+	"fmt"
+
+	"github.com/go-resty/resty/v2"
+)
 
 // structure that manages the selected discovery node
 type DiscoveryNode struct {
@@ -13,6 +17,9 @@ type DiscoveryNode struct {
 
 func NewDiscoveryNode(selectedNode string) *DiscoveryNode {
 	var discoveryNodes []string
-
-	return &DiscoveryNode{ DiscoveryNodes: discoveryNodes, SelectedNode: selectedNode }
+	discoveryBaseUrl := fmt.Sprintf("%s/v1", selectedNode)
+	discoveryFullBaseUrl := fmt.Sprintf("%s/full", discoveryBaseUrl)
+	discoveryClient := resty.New().SetBaseURL(discoveryBaseUrl)
+	discoveryFullClient := resty.New().SetBaseURL(discoveryFullBaseUrl)
+	return &DiscoveryNode{ DiscoveryNodes: discoveryNodes, SelectedNode: selectedNode, discoveryClient: discoveryClient, discoveryFullClient: discoveryFullClient }
 }
