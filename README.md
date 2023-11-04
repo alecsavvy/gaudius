@@ -23,7 +23,7 @@ golang client for interacting with audius nodes
 - [ ] transactions
 - [ ] users
 
-[storage public api](https://github.com/AudiusProject/audius-protocol/blob/main/mediorum/server/server.go#L286-L321)
+[storage public api](https://github.com/AudiusProject/audius-protocol/blob/main/mediorum/server/server.go#L280-L315)
 
 - [ ] uploads
 - [ ] blob
