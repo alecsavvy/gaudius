@@ -12,3 +12,12 @@ func TestGetUploads(t *testing.T) {
 	assert.Nil(t, err)
 	assert.NotEmpty(t, uploads)
 }
+
+func TestGetUpload(t *testing.T) {
+	sdk := NewSdk()
+	id := "01H6EJC9XVMQXM7FA4P0AY148T"
+	uploads, err := sdk.GetUpload(id)
+	assert.Nil(t, err)
+	assert.NotNil(t, uploads)
+	assert.EqualValues(t, id, uploads.ID)
+}
