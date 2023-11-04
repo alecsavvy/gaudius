@@ -1,6 +1,8 @@
 package gaudius
 
 import (
+	"github.com/AudiusProject/audius-protocol/mediorum/server"
+	_ "github.com/AudiusProject/audius-protocol/mediorum/server"
 	"github.com/go-resty/resty/v2"
 )
 
@@ -22,4 +24,9 @@ type StorageNode struct {
 func NewStorageNode(selectedNode string) *StorageNode {
 	var storageNodes []StorageNodeConfig
 	return &StorageNode{ StorageNodes: storageNodes, SelectedNode: &StorageNodeConfig{ Endpoint: selectedNode, DelegateOwnerWallet: ""} }
+}
+
+func (sn *StorageNode) getUpload() *server.Upload {
+	upload := &server.Upload{}
+	return upload
 }
