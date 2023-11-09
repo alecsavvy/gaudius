@@ -3,6 +3,7 @@ module alecsavvy/gaudius
 go 1.21
 
 require (
+	github.com/ethereum/go-ethereum v1.11.4
 	github.com/go-openapi/errors v0.20.4
 	github.com/go-openapi/runtime v0.26.0
 	github.com/go-openapi/strfmt v0.21.7
@@ -53,7 +54,6 @@ require (
 	github.com/decred/dcrd/dcrec/secp256k1/v4 v4.0.1 // indirect
 	github.com/disintegration/imaging v1.6.2 // indirect
 	github.com/erni27/imcache v1.1.0 // indirect
-	github.com/ethereum/go-ethereum v1.11.4 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/gaukas/godicttls v0.0.4 // indirect
 	github.com/georgysavva/scany/v2 v2.0.0 // indirect

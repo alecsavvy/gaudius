@@ -278,11 +278,6 @@ func (m *transactionDetails) validateChange(formats strfmt.Registry) error {
 }
 
 func (m *transactionDetails) validateMetadata(formats strfmt.Registry) error {
-
-	// if m.Metadata == nil {
-	// 	return errors.Required("metadata", "body", nil)
-	// }
-
 	return nil
 }
 
