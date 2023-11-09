@@ -2,6 +2,31 @@
 
 golang client for interacting with audius nodes
 
+## how to use
+
+### library
+
+```
+go get github.com/alecsavvy/gaudius
+```
+
+```
+package main
+
+import "github.com/alecsavvy/gaudius"
+
+func main() {
+	sdk := gaudius.NewSdk()
+}
+```
+
+### examples
+
+```
+git clone https://github.com/alecsavvy/gaudius.git
+make example get-user-and-image
+```
+
 ## apis
 
 [discovery query api](https://discoveryprovider3.audius.co/v1/swagger.json)
