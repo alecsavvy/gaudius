@@ -3,6 +3,7 @@ module github.com/alecsavvy/gaudius
 go 1.21
 
 require (
+	github.com/AudiusProject/audius-protocol/mediorum v0.0.0-20231109160136-6c6c2f38fc37
 	github.com/ethereum/go-ethereum v1.11.4
 	github.com/go-openapi/errors v0.20.4
 	github.com/go-openapi/runtime v0.26.0
@@ -10,6 +11,7 @@ require (
 	github.com/go-openapi/swag v0.22.4
 	github.com/go-openapi/validate v0.22.1
 	github.com/go-resty/resty/v2 v2.10.0
+	github.com/kr/pretty v0.3.1
 	github.com/stretchr/testify v1.8.4
 )
 
@@ -48,6 +50,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ssooidc v1.15.1 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sts v1.21.1 // indirect
 	github.com/aws/smithy-go v1.14.0 // indirect
+	github.com/aybabtme/rgbterm v0.0.0-20170906152045-cc83f3b3ce59 // indirect
 	github.com/btcsuite/btcd/btcec/v2 v2.2.0 // indirect
 	github.com/cloudflare/circl v1.3.3 // indirect
 	github.com/deckarep/golang-set/v2 v2.1.0 // indirect
@@ -85,6 +88,7 @@ require (
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/klauspost/compress v1.17.0 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
+	github.com/kr/text v0.2.0 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/labstack/echo/v4 v4.10.0 // indirect
 	github.com/labstack/gommon v0.4.0 // indirect
@@ -97,6 +101,7 @@ require (
 	github.com/multiformats/go-multibase v0.0.3 // indirect
 	github.com/multiformats/go-multihash v0.2.1 // indirect
 	github.com/multiformats/go-varint v0.0.6 // indirect
+	github.com/nfnt/resize v0.0.0-20180221191011-83c6a9932646 // indirect
 	github.com/oklog/ulid/v2 v2.1.0 // indirect
 	github.com/onsi/ginkgo/v2 v2.12.1 // indirect
 	github.com/pkg/browser v0.0.0-20210911075715-681adbf594b8 // indirect
@@ -113,6 +118,7 @@ require (
 	github.com/tysonmote/rendezvous v0.0.0-20220626212128-be0258dbbd3d // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
+	github.com/wayneashleyberry/terminal-dimensions v1.1.0 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	gocloud.dev v0.34.0 // indirect
 	golang.org/x/crypto v0.14.0 // indirect
@@ -140,7 +146,6 @@ require (
 )
 
 require (
-	github.com/AudiusProject/audius-protocol/mediorum v0.0.0-20231104190137-1980cd88157c
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/go-openapi/analysis v0.21.4 // indirect
@@ -155,6 +160,7 @@ require (
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/oklog/ulid v1.3.1 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
+	github.com/qeesung/image2ascii v1.0.1
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	go.mongodb.org/mongo-driver v1.12.1 // indirect
 	golang.org/x/net v0.17.0 // indirect

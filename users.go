@@ -1,8 +1,9 @@
 package gaudius
 
 import (
-	"alecsavvy/gaudius/gen/discovery/models"
 	"fmt"
+
+	"github.com/alecsavvy/gaudius/gen/discovery/models"
 )
 
 func (sdk *AudiusSdk) GetUserHandle(handle string) (*models.User, error) {

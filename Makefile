@@ -1,3 +1,5 @@
+EXAMPLE?=get-user-and-image
+
 all: build test
 
 deps:
@@ -19,3 +21,8 @@ test:
 
 test_verbose:
 	go test -v ./...
+
+example:
+	go mod tidy
+	make build
+	go run ./examples/$(EXAMPLE)/main.go
