@@ -1,6 +1,6 @@
-# gaudius
+# gaudius 🎧🎵🎸🎤
 
-golang client for interacting with audius nodes
+golang client for interacting with [audius](https://github.com/AudiusProject/audius-protocol)
 
 ## how to use
 
