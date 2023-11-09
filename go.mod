@@ -1,4 +1,4 @@
-module alecsavvy/gaudius
+module github.com/alecsavvy/gaudius
 
 go 1.21
 
