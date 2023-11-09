@@ -1,10 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
-
 func main() {
-
+	gaudius.
 	fmt.Println("starting indexer")
 }
