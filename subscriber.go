@@ -2,7 +2,6 @@ package gaudius
 
 import (
 	"context"
-	"fmt"
 	"math/big"
 	"time"
 
@@ -34,7 +33,6 @@ func (sdk *AudiusSdk) EventScanner(params *ScannerParams) <-chan *contracts.Enti
 		start = uint64(*params.StartBlock)
 	} else {
 		current, _ := sdk.AcdcClient.BlockByNumber(ctx, nil)
-		fmt.Println(current.Number())
 		start = current.NumberU64() - 1
 	}
 
@@ -50,8 +48,6 @@ func (sdk *AudiusSdk) EventScanner(params *ScannerParams) <-chan *contracts.Enti
 				<- await(2 * time.Second)
 				continue
 			}
-
-			fmt.Printf("found block %d\n", block.Number())
 
 			txs := block.Transactions()
 		
