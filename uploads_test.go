@@ -7,14 +7,14 @@ import (
 )
 
 func TestGetUploads(t *testing.T) {
-	sdk := NewSdk()
+	sdk := NewSdkUnsafe()
 	uploads, err := sdk.GetUploads()
 	assert.Nil(t, err)
 	assert.NotEmpty(t, uploads)
 }
 
 func TestGetUpload(t *testing.T) {
-	sdk := NewSdk()
+	sdk := NewSdkUnsafe()
 	id := "01H6EJC9XVMQXM7FA4P0AY148T"
 	uploads, err := sdk.GetUpload(id)
 	assert.Nil(t, err)
