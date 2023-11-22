@@ -65,9 +65,7 @@ make example get-user-and-image
 
 [sdk and libs](https://docs.audius.org/developers/sdk/)
 
-- [ ] [login](https://github.com/AudiusProject/audius-protocol/blob/38ac1b7d5d0f87a47b4bf8839f50a9f61ce9845b/packages/libs/src/api/Account.ts#L59)
 - [ ] [user sign up](https://github.com/AudiusProject/audius-protocol/blob/38ac1b7d5d0f87a47b4bf8839f50a9f61ce9845b/packages/libs/src/api/Account.ts#L119)
-- [ ] [oauth](https://docs.audius.org/developers/sdk-oauth-methods)
 - [ ] [hedgehog](https://docs.audius.org/developers/hedgehog)
 
 [discovery write api](https://docs.audius.org/developers/sdk/)
