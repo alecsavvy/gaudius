@@ -2,6 +2,7 @@ package gaudius
 
 import (
 	"fmt"
+	"time"
 )
 
 // formats to "dimensionXdimension" for content nodes
@@ -21,4 +22,19 @@ func ImageDimensions(size string) string {
 		dimensions = 400
 	}
 	return ImageSizeFormatter(dimensions)
+}
+
+// asynchronously awaits for a period of time
+// use like: <-await(time.Second)
+// for awaiting one second
+func await(d time.Duration) <-chan bool {
+	c := make(chan bool)
+
+	go func() {
+		time.Sleep(d)
+		c <- true
+		close(c)
+	}()
+
+	return c
 }
