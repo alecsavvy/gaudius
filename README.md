@@ -32,7 +32,7 @@ make example get-user-and-image
 [discovery query api](https://discoveryprovider3.audius.co/v1/swagger.json)
 
 - [ ] developer apps
-- [ ] playlists
+- [x] playlists
 - [ ] resolve
 - [ ] tips
 - [ ] tracks
