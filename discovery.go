@@ -9,9 +9,9 @@ import (
 // structure that manages the selected discovery node
 type DiscoveryNode struct {
 	DiscoveryNodes []string
-	SelectedNode string
+	SelectedNode   string
 
-	discoveryClient *resty.Client
+	discoveryClient     *resty.Client
 	discoveryFullClient *resty.Client
 }
 
@@ -21,5 +21,5 @@ func NewDiscoveryNode(selectedNode string) *DiscoveryNode {
 	discoveryFullBaseUrl := fmt.Sprintf("%s/full", discoveryBaseUrl)
 	discoveryClient := resty.New().SetBaseURL(discoveryBaseUrl)
 	discoveryFullClient := resty.New().SetBaseURL(discoveryFullBaseUrl)
-	return &DiscoveryNode{ DiscoveryNodes: discoveryNodes, SelectedNode: selectedNode, discoveryClient: discoveryClient, discoveryFullClient: discoveryFullClient }
+	return &DiscoveryNode{DiscoveryNodes: discoveryNodes, SelectedNode: selectedNode, discoveryClient: discoveryClient, discoveryFullClient: discoveryFullClient}
 }

@@ -9,35 +9,35 @@ import (
 )
 
 type AudiusSdkParams struct {
-	DiscoveryNode string
-	CreatorNode string
+	DiscoveryNode        string
+	CreatorNode          string
 	EntityManagerAddress string
-	AcdcGatewayRpc string
+	AcdcGatewayRpc       string
 }
 
 type AudiusSdk struct {
-	Discovery *DiscoveryNode
-	Storage *StorageNode
-	EntityManager *contracts.EntityManager
+	Discovery            *DiscoveryNode
+	Storage              *StorageNode
+	EntityManager        *contracts.EntityManager
 	EntityManagerAddress *common.Address
-	AcdcClient *ethclient.Client
+	AcdcClient           *ethclient.Client
 }
 
 func NewAudiusSdkMainnetParams() *AudiusSdkParams {
 	return &AudiusSdkParams{
-		DiscoveryNode: "https://discoveryprovider3.audius.co",
-		CreatorNode: "https://creatornode3.audius.co",
+		DiscoveryNode:        "https://discoveryprovider3.audius.co",
+		CreatorNode:          "https://creatornode3.audius.co",
 		EntityManagerAddress: "0x1Cd8a543596D499B9b6E7a6eC15ECd2B7857Fd64",
-		AcdcGatewayRpc: "https://acdc-gateway.audius.co/",
+		AcdcGatewayRpc:       "https://acdc-gateway.audius.co/",
 	}
 }
 
 func NewAudiusSdkTestnetParams() *AudiusSdkParams {
 	return &AudiusSdkParams{
-		DiscoveryNode: "https://discoveryprovider2.staging.audius.co/",
-		CreatorNode: "https://creatornode5.staging.audius.co/",
+		DiscoveryNode:        "https://discoveryprovider2.staging.audius.co/",
+		CreatorNode:          "https://creatornode5.staging.audius.co/",
 		EntityManagerAddress: "0x1Cd8a543596D499B9b6E7a6eC15ECd2B7857Fd64",
-		AcdcGatewayRpc: "https://acdc-gateway.staging.audius.co/",
+		AcdcGatewayRpc:       "https://acdc-gateway.staging.audius.co/",
 	}
 }
 
@@ -57,7 +57,7 @@ func NewCustomSdk(params *AudiusSdkParams) (*AudiusSdk, error) {
 		return nil, err
 	}
 
-	return &AudiusSdk{ Discovery: discovery, Storage: storage, AcdcClient: cl, EntityManager: em, EntityManagerAddress: &addr }, nil
+	return &AudiusSdk{Discovery: discovery, Storage: storage, AcdcClient: cl, EntityManager: em, EntityManagerAddress: &addr}, nil
 }
 
 func NewTestnetSdk() (*AudiusSdk, error) {

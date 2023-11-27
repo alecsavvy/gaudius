@@ -21,7 +21,7 @@ func TestImageDimensions(t *testing.T) {
 	assert.EqualValues(t, "1000x1000", large)
 	large = ImageDimensions("large")
 	assert.EqualValues(t, "1000x1000", large)
-	
+
 	large = ImageDimensions("")
 	assert.EqualValues(t, "1000x1000", large)
 }

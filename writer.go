@@ -13,14 +13,14 @@ import (
 func (sdk *AudiusSdk) write(encodedAbi string) (*common.Hash, error) {
 	ctx := context.TODO()
 	// https://goethereumbook.org/wallet-generate/
-    privateKey, err := crypto.GenerateKey()
-    if err != nil {
-       return nil, err
-    }
+	privateKey, err := crypto.GenerateKey()
+	if err != nil {
+		return nil, err
+	}
 
-    publicKey := privateKey.Public()
-    publicKeyECDSA, _ := publicKey.(*ecdsa.PublicKey)
-    address := crypto.PubkeyToAddress(*publicKeyECDSA).Hex()
+	publicKey := privateKey.Public()
+	publicKeyECDSA, _ := publicKey.(*ecdsa.PublicKey)
+	address := crypto.PubkeyToAddress(*publicKeyECDSA).Hex()
 	sender := common.HexToAddress(address)
 
 	// gather tx params
@@ -39,7 +39,7 @@ func (sdk *AudiusSdk) write(encodedAbi string) (*common.Hash, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return &hash, nil
 }
 
@@ -49,14 +49,14 @@ func (sdk *AudiusSdk) RawWrite(encodedAbi string) (*contracts.EntityManagerManag
 	if err != nil {
 		return nil, err
 	}
-	
+
 	blocknum := block.NumberU64()
 	tx, err := sdk.write(encodedAbi)
 	if err != nil {
 		return nil, err
 	}
 
-	sp := &ScannerParams{ StartBlock: &blocknum }
+	sp := &ScannerParams{StartBlock: &blocknum}
 	sub := sdk.TxSubscriber(sp, *tx)
 
 	event := <-sub

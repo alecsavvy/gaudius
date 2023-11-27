@@ -47,12 +47,12 @@ func (sdk *AudiusSdk) EventScanner(params *ScannerParams) (<-chan *contracts.Ent
 				if err != nil && err.Error() == "not found" || block == nil {
 					// give a few seconds for main chain
 					// to get ahead of scanner
-					<- await(2 * time.Second)
+					<-await(2 * time.Second)
 					continue
 				}
-	
+
 				txs := block.Transactions()
-			
+
 				for _, tx := range txs {
 					if tx == nil {
 						continue
@@ -65,7 +65,7 @@ func (sdk *AudiusSdk) EventScanner(params *ScannerParams) (<-chan *contracts.Ent
 					}
 				}
 				// offset next block being mined
-				<- await(500 * time.Millisecond)
+				<-await(500 * time.Millisecond)
 				current += 1
 			}
 		}

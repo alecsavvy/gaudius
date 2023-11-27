@@ -13,7 +13,7 @@ import (
 
 func main() {
 	sdk := gaudius.NewSdkUnsafe()
-	
+
 	user, err := sdk.GetUser("1PqKz")
 
 	if err != nil {

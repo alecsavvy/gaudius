@@ -8,7 +8,7 @@ import (
 
 func TestUsers(t *testing.T) {
 	sdk := NewSdkUnsafe()
-	
+
 	userID := "1PqKz"
 	userHandle := "LemonadeJetpack"
 

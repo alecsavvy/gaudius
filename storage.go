@@ -5,10 +5,10 @@ import (
 )
 
 type StorageNodeConfig struct {
-	Endpoint string
+	Endpoint            string
 	DelegateOwnerWallet string
 
-	storageClient *resty.Client
+	storageClient         *resty.Client
 	storageInternalClient *resty.Client
 }
 
@@ -16,12 +16,12 @@ type StorageNodeConfig struct {
 type StorageNode struct {
 	StorageNodes []StorageNodeConfig
 	SelectedNode *StorageNodeConfig
-	client *resty.Client
+	client       *resty.Client
 }
 
 func NewStorageNode(selectedNode string) *StorageNode {
 	var storageNodes []StorageNodeConfig
 	storageBaseUrl := selectedNode
 	storageClient := resty.New().SetBaseURL(storageBaseUrl)
-	return &StorageNode{ StorageNodes: storageNodes, SelectedNode: &StorageNodeConfig{ Endpoint: selectedNode, DelegateOwnerWallet: ""}, client: storageClient}
+	return &StorageNode{StorageNodes: storageNodes, SelectedNode: &StorageNodeConfig{Endpoint: selectedNode, DelegateOwnerWallet: ""}, client: storageClient}
 }

@@ -1,6 +1,6 @@
 EXAMPLE?=get-user-and-image
 
-all: build test
+all: format build test
 
 deps:
 	brew tap ethereum/ethereum
@@ -15,6 +15,9 @@ generate:
 
 build:
 	go build
+
+format:
+	go fmt ./...
 
 test:
 	go test ./... 
