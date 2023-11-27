@@ -35,7 +35,7 @@ make example get-user-and-image
 - [x] playlists
 - [ ] resolve
 - [ ] tips
-- [ ] tracks
+- [x] tracks
 - [x] users
 
 [discovery query full api](https://discoveryprovider3.audius.co/v1/full/swagger.json)
