@@ -31,9 +31,9 @@ make example get-user-and-image
 
 [discovery query api](https://discoveryprovider3.audius.co/v1/swagger.json)
 
-- [ ] developer apps
+- [x] developer apps
 - [x] playlists
-- [ ] resolve
+- [x] resolve
 - [x] tips
 - [x] tracks
 - [x] users
