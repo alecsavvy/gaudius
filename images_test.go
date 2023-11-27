@@ -4,19 +4,19 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestGetImage(t *testing.T) {
 	sdk := NewSdkUnsafe()
 
 	image, err := sdk.GetImage("01H6EJC9XVMQXM7FA4P0AY148T")
-	assert.Nil(t, err)
-	assert.NotEmpty(t, image)
+	require.Nil(t, err)
+	require.NotEmpty(t, image)
 
 	expected, err := ioutil.ReadFile("test_assets/test_image_large.jpg")
-	assert.Nil(t, err)
-	assert.NotEmpty(t, expected)
+	require.Nil(t, err)
+	require.NotEmpty(t, expected)
 
-	assert.EqualValues(t, expected, image)
+	require.EqualValues(t, expected, image)
 }

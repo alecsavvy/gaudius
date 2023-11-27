@@ -3,7 +3,7 @@ package gaudius
 import (
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestUsers(t *testing.T) {
@@ -13,22 +13,23 @@ func TestUsers(t *testing.T) {
 	userHandle := "LemonadeJetpack"
 
 	user, err := sdk.GetUser(userID)
-	assert.Nil(t, err)
-	assert.EqualValues(t, userHandle, *user.Handle)
+	require.Nil(t, err)
+	require.EqualValues(t, userHandle, *user.Handle)
 
-	user, err = sdk.GetUserHandle(userHandle)
-	assert.Nil(t, err)
-	assert.EqualValues(t, userID, *user.ID)
+	user, err = sdk.GetUserByHandle(userHandle)
+	require.Nil(t, err)
+	require.EqualValues(t, userID, *user.ID)
 
 	tracks, err := sdk.GetUserAiAttributed(userHandle)
-	assert.Nil(t, err)
-	assert.Empty(t, tracks)
+	require.Nil(t, err)
+	require.Empty(t, tracks)
 
 	users, err := sdk.UserSearch("LemonadeJetpack")
-	assert.Nil(t, err)
-	assert.EqualValues(t, userID, *users[0].ID)
+	require.Nil(t, err)
+	require.EqualValues(t, userID, *users[0].ID)
 
 	apps, err := sdk.GetUserAuthorizedApps(userID)
-	assert.Nil(t, err)
-	assert.NotEmpty(t, apps)
+	require.Nil(t, err)
+	require.NotEmpty(t, apps)
+
 }

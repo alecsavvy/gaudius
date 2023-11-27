@@ -5,6 +5,8 @@ import (
 	"time"
 )
 
+/** Exported utilities */
+
 // formats to "dimensionXdimension" for content nodes
 func ImageSizeFormatter(dimension int) string {
 	return fmt.Sprintf("%dx%d", dimension, dimension)
@@ -23,6 +25,8 @@ func ImageDimensions(size string) string {
 	}
 	return ImageSizeFormatter(dimensions)
 }
+
+/** Internal Utilities */
 
 // asynchronously awaits for a period of time
 // use like: <-await(time.Second)
