@@ -49,14 +49,14 @@ func (g *GetTipsParams) IntoQueryString() string {
     return queryString
 }
 
-func (sdk *AudiusSdk) GetTips(params GetTipsParams) (*models.User, error) {
+func (sdk *AudiusSdk) GetTips(params GetTipsParams) ([]*models.Tip, error) {
 	dn := sdk.Discovery
 	qs := params.IntoQueryString()
 	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/tips?%s", qs))
 	if err != nil {
 		return nil, err
 	}
-	var resp models.UserResponse
+	var resp models.GetTipsResponse
 	err = resp.UnmarshalBinary(res.Body())
 	if err != nil {
 		return nil, err
