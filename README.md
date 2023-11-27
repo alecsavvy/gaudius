@@ -24,10 +24,10 @@ func main() {
 
 ```
 git clone https://github.com/alecsavvy/gaudius.git
-make example get-user-and-image
+make example tx-subscriber
 ```
 
-## apis
+## completed apis
 
 [discovery query api](https://discoveryprovider3.audius.co/v1/swagger.json)
 
@@ -37,6 +37,12 @@ make example get-user-and-image
 - [x] tips
 - [x] tracks
 - [x] users
+
+[transaction subscriber](https://github.com/AudiusProject/audius-protocol/blob/main/packages/discovery-provider/src/tasks/index_nethermind.py)
+
+This is an event stream of incoming transactions from audius through the ACDC network.
+
+## in progress apis
 
 [discovery query full api](https://discoveryprovider3.audius.co/v1/full/swagger.json)
 
@@ -62,11 +68,6 @@ make example get-user-and-image
 - [ ] blobs
 - [ ] metrics
 - [ ] system
-
-[sdk and libs](https://docs.audius.org/developers/sdk/)
-
-- [ ] [user sign up](https://github.com/AudiusProject/audius-protocol/blob/38ac1b7d5d0f87a47b4bf8839f50a9f61ce9845b/packages/libs/src/api/Account.ts#L119)
-- [ ] [hedgehog](https://docs.audius.org/developers/hedgehog)
 
 [discovery write api](https://docs.audius.org/developers/sdk/)
 
