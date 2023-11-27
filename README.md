@@ -34,7 +34,7 @@ make example get-user-and-image
 - [ ] developer apps
 - [x] playlists
 - [ ] resolve
-- [ ] tips
+- [x] tips
 - [x] tracks
 - [x] users
 
