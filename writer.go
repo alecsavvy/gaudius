@@ -10,7 +10,16 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
-func (sdk *AudiusSdk) write(encodedAbi string) (*common.Hash, error) {
+func (sdk *AudiusSdk) relay(encodedabi string) (*contracts.EntityManagerManageEntity, error) {
+	txhash, err := sdk.genTxHash(encodedabi)
+	if err != nil {
+		return nil, err
+	}
+	sub := sdk.TxSubscriber(nil, *txhash)
+	return <-sub, nil
+}
+
+func (sdk *AudiusSdk) genTxHash(encodedAbi string) (*common.Hash, error) {
 	ctx := context.TODO()
 	// https://goethereumbook.org/wallet-generate/
 	privateKey, err := crypto.GenerateKey()
@@ -41,24 +50,4 @@ func (sdk *AudiusSdk) write(encodedAbi string) (*common.Hash, error) {
 	}
 
 	return &hash, nil
-}
-
-func (sdk *AudiusSdk) RawWrite(encodedAbi string) (*contracts.EntityManagerManageEntity, error) {
-	ctx := context.TODO()
-	block, err := sdk.AcdcClient.BlockByNumber(ctx, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	blocknum := block.NumberU64()
-	tx, err := sdk.write(encodedAbi)
-	if err != nil {
-		return nil, err
-	}
-
-	sp := &ScannerParams{StartBlock: &blocknum}
-	sub := sdk.TxSubscriber(sp, *tx)
-
-	event := <-sub
-	return event, nil
 }
