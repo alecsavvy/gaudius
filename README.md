@@ -16,7 +16,10 @@ package main
 import "github.com/alecsavvy/gaudius"
 
 func main() {
-	sdk := gaudius.NewSdk()
+	sdk, err := gaudius.NewSdk()
+	if err != nil {
+		log.Fatal("sdk init failed: ", err)
+	}
 }
 ```
 
@@ -64,7 +67,7 @@ This is an event stream of incoming transactions from audius through the ACDC ne
 
 [storage internal api](https://github.com/AudiusProject/audius-protocol/blob/main/mediorum/server/server.go#L334-L356)
 
-- [ ] crud
+- [ ] crudr
 - [ ] blobs
 - [ ] metrics
 - [ ] system
