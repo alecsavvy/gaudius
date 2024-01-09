@@ -22,6 +22,9 @@ format:
 test:
 	go test ./... 
 
+hotreload:
+	modd
+
 test_verbose:
 	go test -v ./...
 

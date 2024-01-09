@@ -24,4 +24,7 @@ func TestImageDimensions(t *testing.T) {
 
 	large = ImageDimensions("")
 	require.EqualValues(t, "1000x1000", large)
+
+	malformed := ImageDimensions("batman")
+	require.EqualValues(t, "1000x1000", malformed)
 }
