@@ -26,8 +26,11 @@ func ImageDimensions(size string) string {
 	return ImageSizeFormatter(dimensions)
 }
 
-func Utf8ToHex(str string) string {
-	return fmt.Sprintf("%x", []byte(str))
+// for parity with the web3.js web3.utils.utf8ToHex() call
+func Utf8ToHex(s string) [32]byte {
+	hex := [32]byte{}
+	copy(hex[:], s)
+	return hex
 }
 
 /** Internal Utilities */

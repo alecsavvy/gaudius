@@ -8,13 +8,6 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
-type AudiusSdkParams struct {
-	DiscoveryNode        string
-	CreatorNode          string
-	EntityManagerAddress string
-	AcdcGatewayRpc       string
-}
-
 type AudiusSdk struct {
 	Discovery            *DiscoveryNode
 	Storage              *StorageNode
@@ -27,7 +20,7 @@ func NewAudiusSdkMainnetParams() *AudiusSdkParams {
 	return &AudiusSdkParams{
 		DiscoveryNode:        "https://discoveryprovider3.audius.co",
 		CreatorNode:          "https://creatornode3.audius.co",
-		EntityManagerAddress: "0x1Cd8a543596D499B9b6E7a6eC15ECd2B7857Fd64",
+		EntityManagerAddress: MainnetAcdcAddress,
 		AcdcGatewayRpc:       "https://acdc-gateway.audius.co/",
 	}
 }
@@ -36,7 +29,7 @@ func NewAudiusSdkTestnetParams() *AudiusSdkParams {
 	return &AudiusSdkParams{
 		DiscoveryNode:        "https://discoveryprovider2.staging.audius.co/",
 		CreatorNode:          "https://creatornode5.staging.audius.co/",
-		EntityManagerAddress: "0x1Cd8a543596D499B9b6E7a6eC15ECd2B7857Fd64",
+		EntityManagerAddress: TestnetAcdcAddress,
 		AcdcGatewayRpc:       "https://acdc-gateway.staging.audius.co/",
 	}
 }
