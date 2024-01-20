@@ -26,6 +26,10 @@ func ImageDimensions(size string) string {
 	return ImageSizeFormatter(dimensions)
 }
 
+func Utf8ToHex(str string) string {
+	return fmt.Sprintf("%x", []byte(str))
+}
+
 /** Internal Utilities */
 
 // asynchronously awaits for a period of time
