@@ -8,8 +8,16 @@ import (
 	"strings"
 
 	"github.com/alecsavvy/gaudius"
-	"github.com/alecsavvy/gaudius/gen/discovery/models"
+	"github.com/davecgh/go-spew/spew"
+	"github.com/golang-jwt/jwt"
 )
+
+func init() {
+	// Register the custom signing method with the jwt package
+	jwt.RegisterSigningMethod("Keccak256", func() jwt.SigningMethod {
+		return &gaudius.Keccak256SigningMethod{}
+	})
+}
 
 func main() {
 	sdk := gaudius.NewSdkUnsafe()
@@ -17,25 +25,14 @@ func main() {
 
 	// start webserver to receive auth token
 	http.HandleFunc("/oauth", func(w http.ResponseWriter, r *http.Request) {
-		token := r.URL.Query().Get("token")
-
-		fmt.Println(token)
-
-		claims := strings.Split(token, ".")[1]
-		bytes, err := base64UrlDecode(claims)
+		tokenString := r.URL.Query().Get("token")
+		token, _ := jwt.Parse(tokenString, nil)
+		decoded, err := gaudius.ClaimsToDecodedUserToken(token.Claims)
 		if err != nil {
-			fmt.Printf("Error decoding payload: %v\n", err)
+			fmt.Println(err)
 			return
 		}
-
-		decodedToken := &models.DecodedUserToken{}
-		err = decodedToken.UnmarshalBinary(bytes)
-		if err != nil {
-			fmt.Printf("Error unmarshaling payload: %v\n", err)
-			return
-		}
-
-		fmt.Println(decodedToken)
+		spew.Dump(decoded)
 	})
 
 	// configure oauth in sdk
