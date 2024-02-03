@@ -7,8 +7,16 @@ type AudiusSdkParams struct {
 	AcdcGatewayRpc       string
 }
 
-func createSdkParams() (*AudiusSdkParams, error) {
-	params := &AudiusSdkParams{}
+/*
+*
+First will determine the environment.
 
-	return params, nil
+Second will read in defaults for that environment.
+
+Third will read in a dotenv / env vars for that environment.
+
+Fourth will read in hardcoded values from function input.
+*/
+func InitSdkParams() (*AudiusSdkParams, error) {
+	return nil, nil
 }
