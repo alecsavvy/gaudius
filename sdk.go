@@ -14,6 +14,7 @@ type AudiusSdk struct {
 	EntityManager        *contracts.EntityManager
 	EntityManagerAddress *common.Address
 	AcdcClient           *ethclient.Client
+	Oauth                *OauthConfiguration
 }
 
 func NewAudiusSdkMainnetParams() *AudiusSdkParams {
