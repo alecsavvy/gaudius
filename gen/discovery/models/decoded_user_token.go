@@ -29,7 +29,7 @@ type DecodedUserToken struct {
 
 	// iat
 	// Required: true
-	Iat *string `json:"iat"`
+	Iat *uint32 `json:"iat"`
 
 	// name
 	// Required: true
