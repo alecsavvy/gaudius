@@ -38,7 +38,7 @@ func main() {
 
 	// configure oauth in sdk
 	oauthConfig := &gaudius.OauthConfiguration{
-		ApiKey:      "b3a7f3df931362d93f6d72b3670d438d7c9865af",
+		ApiKey:      "",
 		Scope:       "write",
 		RedirectURI: fmt.Sprintf("http://localhost:%d/oauth", port),
 	}
