@@ -1,11 +1,9 @@
 package main
 
 import (
-	"encoding/base64"
 	"fmt"
 	"log"
 	"net/http"
-	"strings"
 
 	"github.com/alecsavvy/gaudius"
 	"github.com/davecgh/go-spew/spew"
@@ -14,7 +12,7 @@ import (
 
 func init() {
 	// Register the custom signing method with the jwt package
-	jwt.RegisterSigningMethod("Keccak256", func() jwt.SigningMethod {
+	jwt.RegisterSigningMethod("keccak256", func() jwt.SigningMethod {
 		return &gaudius.Keccak256SigningMethod{}
 	})
 }
@@ -26,7 +24,10 @@ func main() {
 	// start webserver to receive auth token
 	http.HandleFunc("/oauth", func(w http.ResponseWriter, r *http.Request) {
 		tokenString := r.URL.Query().Get("token")
-		token, _ := jwt.Parse(tokenString, nil)
+		token, err := jwt.Parse(tokenString, nil)
+		if err != nil {
+			fmt.Println(err)
+		}
 		decoded, err := gaudius.ClaimsToDecodedUserToken(token.Claims)
 		if err != nil {
 			fmt.Println(err)
@@ -37,7 +38,7 @@ func main() {
 
 	// configure oauth in sdk
 	oauthConfig := &gaudius.OauthConfiguration{
-		ApiKey:      "",
+		ApiKey:      "b3a7f3df931362d93f6d72b3670d438d7c9865af",
 		Scope:       "write",
 		RedirectURI: fmt.Sprintf("http://localhost:%d/oauth", port),
 	}
@@ -51,19 +52,4 @@ func main() {
 
 	fmt.Println(url)
 	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
-}
-
-func base64UrlDecode(data string) ([]byte, error) {
-	// Add padding characters if necessary
-	if m := len(data) % 4; m != 0 {
-		data += strings.Repeat("=", 4-m)
-	}
-
-	// Base64 URL decode
-	bytes, err := base64.URLEncoding.DecodeString(data)
-	if err != nil {
-		return nil, err
-	}
-
-	return bytes, nil
 }

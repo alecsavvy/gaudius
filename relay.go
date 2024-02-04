@@ -3,14 +3,22 @@ package gaudius
 import (
 	"context"
 	"crypto/ecdsa"
+	"fmt"
 
 	"github.com/alecsavvy/gaudius/gen/contracts"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/go-resty/resty/v2"
 )
 
 func (sdk *AudiusSdk) relay(encodedabi string) (*contracts.EntityManagerManageEntity, error) {
+	c := resty.New()
+	_, err := c.NewRequest().SetBody(nil).Post(fmt.Sprintf("%s/relay", sdk.Discovery.SelectedNode))
+	if err != nil {
+		return nil, err
+	}
+
 	txhash, err := sdk.genTxHash(encodedabi)
 	if err != nil {
 		return nil, err

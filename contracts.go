@@ -23,6 +23,22 @@ type AudiusContracts struct {
 	RewardsManager         *contracts.EthRewardsManager
 }
 
+func NewAudiusContracts(rpc *ethclient.Client, registryAddress string) (*AudiusContracts, error) {
+	ok := common.IsHexAddress(registryAddress)
+	if !ok {
+		return nil, errors.New(fmt.Sprintf("registryAddress %s is not a valid hex address", registryAddress))
+	}
+	addr := common.HexToAddress(registryAddress)
+	registry, err := contracts.NewRegistry(addr, rpc)
+	if err != nil {
+		return nil, err
+	}
+	return &AudiusContracts{
+		Rpc:      rpc,
+		Registry: registry,
+	}, nil
+}
+
 func (ac *AudiusContracts) GetAudioTokenContract() (*contracts.AudiusToken, error) {
 	if ac.AudioToken != nil {
 		return ac.AudioToken, nil
@@ -40,20 +56,4 @@ func (ac *AudiusContracts) GetAudioTokenContract() (*contracts.AudiusToken, erro
 
 	ac.AudioToken = contract
 	return contract, nil
-}
-
-func NewAudiusContracts(rpc *ethclient.Client, registryAddress string) (*AudiusContracts, error) {
-	ok := common.IsHexAddress(registryAddress)
-	if !ok {
-		return nil, errors.New(fmt.Sprintf("registryAddress %s is not a valid hex address", registryAddress))
-	}
-	addr := common.HexToAddress(registryAddress)
-	registry, err := contracts.NewRegistry(addr, rpc)
-	if err != nil {
-		return nil, err
-	}
-	return &AudiusContracts{
-		Rpc:      rpc,
-		Registry: registry,
-	}, nil
 }
