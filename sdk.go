@@ -46,3 +46,10 @@ func NewSdkUnsafe() *AudiusSdk {
 	}
 	return sdk
 }
+
+type AudiusSdkParamsNew struct {
+	DiscoveryNode        string
+	CreatorNode          string
+	EntityManagerAddress string
+	AcdcGatewayRpc       string
+}
