@@ -8,13 +8,16 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
+// the one struct to rule them all
 type AudiusSdk struct {
 	Discovery            *DiscoveryNode
 	Storage              *StorageNode
 	EntityManager        *contracts.EntityManager
 	EntityManagerAddress *common.Address
+	EthereumClient       *ethclient.Client
 	AcdcClient           *ethclient.Client
 	Oauth                *OauthConfiguration
+	Contracts            *AudiusContracts
 }
 
 func NewTestnetSdk() (*AudiusSdk, error) {

@@ -1,42 +1,52 @@
 package gaudius
 
 import (
+	"fmt"
+
 	"github.com/alecsavvy/gaudius/gen/contracts"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
 type AudiusSdkParams struct {
-	DiscoveryNode        string
-	CreatorNode          string
+	DiscoveryNodes       []string
+	CreatorNodes         []string
 	EntityManagerAddress string
-	AcdcGatewayRpc       string
+	RegistryAddress      string
+	EthereumRpc          string
 }
 
 func NewAudiusSdkMainnetParams() *AudiusSdkParams {
 	return &AudiusSdkParams{
-		DiscoveryNode:        "https://discoveryprovider3.audius.co",
-		CreatorNode:          "https://creatornode3.audius.co",
+		DiscoveryNodes:       MainnetDiscoveryNodesCached,
+		CreatorNodes:         MainnetStorageNodesCached,
 		EntityManagerAddress: MainnetAcdcAddress,
-		AcdcGatewayRpc:       "https://acdc-gateway.audius.co/",
+		RegistryAddress:      MainnetRegistryAddress,
 	}
 }
 
 func NewAudiusSdkTestnetParams() *AudiusSdkParams {
 	return &AudiusSdkParams{
-		DiscoveryNode:        "https://discoveryprovider2.staging.audius.co/",
-		CreatorNode:          "https://creatornode5.staging.audius.co/",
+		DiscoveryNodes:       TestnetDiscoveryNodesCached,
+		CreatorNodes:         TestnetStorageNodesCached,
 		EntityManagerAddress: TestnetAcdcAddress,
-		AcdcGatewayRpc:       "https://acdc-gateway.staging.audius.co/",
+		RegistryAddress:      TestnetRegistryAddress,
 	}
 }
 
 func NewCustomSdk(params *AudiusSdkParams) (*AudiusSdk, error) {
-	discovery := NewDiscoveryNode(params.DiscoveryNode)
-	storage := NewStorageNode(params.CreatorNode)
+	discovery, err := NewDiscoveryNode(params.DiscoveryNodes)
+	if err != nil {
+		return nil, err
+	}
+	storage, err := NewStorageNode(params.CreatorNodes)
+	if err != nil {
+		return nil, err
+	}
 
 	addr := common.HexToAddress(params.EntityManagerAddress)
-	cl, err := ethclient.Dial(params.AcdcGatewayRpc)
+	acdcEndpoint := fmt.Sprintf("%s/chain", discovery.SelectedNode)
+	cl, err := ethclient.Dial(acdcEndpoint)
 
 	if err != nil {
 		return nil, err
@@ -47,5 +57,24 @@ func NewCustomSdk(params *AudiusSdkParams) (*AudiusSdk, error) {
 		return nil, err
 	}
 
-	return &AudiusSdk{Discovery: discovery, Storage: storage, AcdcClient: cl, EntityManager: em, EntityManagerAddress: &addr}, nil
+	sdk := &AudiusSdk{Discovery: discovery, Storage: storage, AcdcClient: cl, EntityManager: em, EntityManagerAddress: &addr}
+
+	// conditional features
+
+	// init eth rpc and contracts if eth rpc supplied
+	if params.EthereumRpc != "" {
+		ethrpc, err := ethclient.Dial(params.EthereumRpc)
+		if err != nil {
+			return nil, err
+		}
+		contracts, err := NewAudiusContracts(ethrpc, params.RegistryAddress)
+		if err != nil {
+			return nil, err
+		}
+
+		sdk.EthereumClient = ethrpc
+		sdk.Contracts = contracts
+	}
+
+	return sdk, nil
 }

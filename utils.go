@@ -2,6 +2,7 @@ package gaudius
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
@@ -48,4 +49,11 @@ func await(d time.Duration) <-chan bool {
 	}()
 
 	return c
+}
+
+func shuffle[T any](slice []T) {
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(slice), func(i, j int) {
+		slice[i], slice[j] = slice[j], slice[i]
+	})
 }

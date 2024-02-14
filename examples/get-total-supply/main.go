@@ -6,37 +6,30 @@ import (
 	"os"
 
 	"github.com/alecsavvy/gaudius"
-	"github.com/alecsavvy/gaudius/gen/contracts"
-	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/ethclient"
+	"github.com/joho/godotenv"
 )
 
 func main() {
-	url := os.Getenv("ETHEREUM_RPC")
-	client, err := ethclient.Dial(url)
+	godotenv.Load()
+	ethrpc := os.Getenv("ETHEREUM_RPC_URL")
+
+	params := gaudius.NewAudiusSdkMainnetParams()
+	params.EthereumRpc = ethrpc
+
+	sdk, err := gaudius.NewCustomSdk(params)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	addr := common.HexToAddress(gaudius.MainnetRegistryAddress)
-	contractRegistry, err := contracts.NewRegistry(addr, client)
+	tokenContract, err := sdk.Contracts.GetAudioTokenContract()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	audTokenAddr, err := contractRegistry.GetContract0(nil, gaudius.AudiusTokenKey)
+	totalSupply, err := tokenContract.TotalSupply(nil)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	audioToken, err := contracts.NewAudiusToken(audTokenAddr, client)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	totalSupply, err := audioToken.TotalSupply(nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("Total audio token supply: %d\n", totalSupply)
+	fmt.Printf("Total $AUDIO token supply: %d", totalSupply)
 }
