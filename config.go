@@ -10,7 +10,7 @@ import (
 
 type AudiusSdkParams struct {
 	DiscoveryNodes       []string
-	CreatorNodes         []string
+	ContentNodes         []string
 	EntityManagerAddress string
 	RegistryAddress      string
 	EthereumRpc          string
@@ -19,7 +19,7 @@ type AudiusSdkParams struct {
 func NewAudiusSdkMainnetParams() *AudiusSdkParams {
 	return &AudiusSdkParams{
 		DiscoveryNodes:       MainnetDiscoveryNodesCached,
-		CreatorNodes:         MainnetStorageNodesCached,
+		ContentNodes:         MainnetContentNodesCached,
 		EntityManagerAddress: MainnetAcdcAddress,
 		RegistryAddress:      MainnetRegistryAddress,
 	}
@@ -28,7 +28,7 @@ func NewAudiusSdkMainnetParams() *AudiusSdkParams {
 func NewAudiusSdkTestnetParams() *AudiusSdkParams {
 	return &AudiusSdkParams{
 		DiscoveryNodes:       TestnetDiscoveryNodesCached,
-		CreatorNodes:         TestnetStorageNodesCached,
+		ContentNodes:         TestnetContentNodesCached,
 		EntityManagerAddress: TestnetAcdcAddress,
 		RegistryAddress:      TestnetRegistryAddress,
 	}
@@ -39,7 +39,7 @@ func NewCustomSdk(params *AudiusSdkParams) (*AudiusSdk, error) {
 	if err != nil {
 		return nil, err
 	}
-	storage, err := NewStorageNode(params.CreatorNodes)
+	content, err := NewContentNode(params.ContentNodes)
 	if err != nil {
 		return nil, err
 	}
@@ -57,7 +57,7 @@ func NewCustomSdk(params *AudiusSdkParams) (*AudiusSdk, error) {
 		return nil, err
 	}
 
-	sdk := &AudiusSdk{Discovery: discovery, Storage: storage, AcdcClient: cl, EntityManager: em, EntityManagerAddress: &addr}
+	sdk := &AudiusSdk{Discovery: discovery, Content: content, AcdcClient: cl, EntityManager: em, EntityManagerAddress: &addr}
 
 	// conditional features
 

@@ -141,7 +141,7 @@ func main() {
 - [ ] transactions
 - [ ] users
 
-[storage public api](https://github.com/AudiusProject/audius-protocol/blob/main/mediorum/server/server.go#L280-L315)
+[content public api](https://github.com/AudiusProject/audius-protocol/blob/main/mediorum/server/server.go#L280-L315)
 
 - [ ] uploads
 - [ ] blob
@@ -149,7 +149,7 @@ func main() {
 - [ ] system
 - [ ] delist
 
-[storage internal api](https://github.com/AudiusProject/audius-protocol/blob/main/mediorum/server/server.go#L334-L356)
+[content internal api](https://github.com/AudiusProject/audius-protocol/blob/main/mediorum/server/server.go#L334-L356)
 
 - [ ] crudr
 - [ ] blobs

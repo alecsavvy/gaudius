@@ -14,7 +14,7 @@ func main() {
 	}
 
 	selectedDiscovery := sdk.Discovery.SelectedNode
-	selectedContent := sdk.Storage.SelectedNode
+	selectedContent := sdk.Content.SelectedNode
 
 	fmt.Printf("Discovery: %s\nContent: %s\n", selectedDiscovery, selectedContent)
 }

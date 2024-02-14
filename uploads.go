@@ -8,7 +8,7 @@ import (
 )
 
 func (sdk *AudiusSdk) GetUploads() (*[]server.Upload, error) {
-	cn := sdk.Storage
+	cn := sdk.Content
 
 	res, err := cn.client.R().Get("/uploads")
 	if err != nil {
@@ -25,7 +25,7 @@ func (sdk *AudiusSdk) GetUploads() (*[]server.Upload, error) {
 }
 
 func (sdk *AudiusSdk) GetUpload(id string) (*server.Upload, error) {
-	cn := sdk.Storage
+	cn := sdk.Content
 
 	path := fmt.Sprintf("/uploads/%s", id)
 	res, err := cn.client.R().Get(path)

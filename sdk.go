@@ -11,7 +11,7 @@ import (
 // the one struct to rule them all
 type AudiusSdk struct {
 	Discovery            *DiscoveryNode
-	Storage              *StorageNode
+	Content              *ContentNode
 	EntityManager        *contracts.EntityManager
 	EntityManagerAddress *common.Address
 	EthereumClient       *ethclient.Client
