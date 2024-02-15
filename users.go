@@ -16,6 +16,7 @@ func (sdk *AudiusSdk) GetUser(id string) (*models.User, error) {
 }
 
 func (sdk *AudiusSdk) GetUserFromWallet(wallet string) (*models.User, error) {
+
 	dn := sdk.Discovery
 	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/id?associated_wallet=%s", wallet))
 	if err != nil {
