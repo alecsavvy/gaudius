@@ -3,6 +3,7 @@ package gaudius
 import (
 	"testing"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/stretchr/testify/require"
 )
 
@@ -20,9 +21,9 @@ func TestUsers(t *testing.T) {
 	require.Nil(t, err)
 	require.EqualValues(t, userID, *user.ID)
 
-	tracks, err := sdk.GetUserAiAttributed(userHandle, nil)
+	aiTracks, err := sdk.GetUserAiAttributed(userHandle, nil)
 	require.Nil(t, err)
-	require.Empty(t, tracks)
+	require.Empty(t, aiTracks)
 
 	users, err := sdk.UserSearch("LemonadeJetpack")
 	require.Nil(t, err)
@@ -32,4 +33,8 @@ func TestUsers(t *testing.T) {
 	require.Nil(t, err)
 	require.NotEmpty(t, apps)
 
+	tracks, err := sdk.GetUserTracks(*users[0].ID, map[string]string{"limit": "10", "filter_tracks": "all"})
+	require.Nil(t, err)
+	require.NotEmpty(t, tracks)
+	spew.Dump(tracks)
 }
