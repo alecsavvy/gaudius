@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/alecsavvy/gaudius/gen/discovery/models"
+	fullModels "github.com/alecsavvy/gaudius/gen/discoveryFull/models"
 )
 
 func (sdk *AudiusSdk) GetUser(id string) (*models.User, error) {
@@ -275,4 +276,23 @@ func (sdk *AudiusSdk) GetUserAuthorizedApps(id string) ([]*models.AuthorizedApp,
 	}
 
 	return apps.Data, nil
+}
+
+func (sdk *AudiusSdk) GetTopGenreUsers(genre string, query map[string]string) ([]*fullModels.UserFull, error) {
+	dn := sdk.Discovery
+	if query == nil {
+		query = make(map[string]string)
+	}
+	query["genre"] = genre
+	res, err := dn.discoveryFullClient.R().SetQueryParams(query).Get("/users/genre/top")
+	if err != nil {
+		return nil, err
+	}
+	var response fullModels.TopGenreUsersResponseFull
+	err = response.UnmarshalBinary(res.Body())
+	if err != nil {
+		return nil, err
+	}
+
+	return response.Data, nil
 }

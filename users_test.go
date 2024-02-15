@@ -37,3 +37,12 @@ func TestUsers(t *testing.T) {
 	require.Nil(t, err)
 	require.NotEmpty(t, tracks)
 }
+
+func TestFullUsers(t *testing.T) {
+	sdk, err := NewSdk()
+	require.Nil(t, err)
+
+	topPopUsers, err := sdk.GetTopGenreUsers(Genre.Pop, nil)
+	require.Nil(t, err)
+	require.NotEmpty(t, topPopUsers)
+}
