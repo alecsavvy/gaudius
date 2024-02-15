@@ -8,17 +8,10 @@ import (
 )
 
 func (sdk *AudiusSdk) GetUser(id string) (*models.User, error) {
-	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s", id))
-	if err != nil {
+	resp := new(models.UserResponse)
+	if err := DiscoveryQuery(sdk, fmt.Sprintf("/users/%s", id), nil, resp); err != nil {
 		return nil, err
 	}
-	var resp models.UserResponse
-	err = resp.UnmarshalBinary(res.Body())
-	if err != nil {
-		return nil, err
-	}
-
 	return resp.Data, nil
 }
 
@@ -279,18 +272,12 @@ func (sdk *AudiusSdk) GetUserAuthorizedApps(id string) ([]*models.AuthorizedApp,
 }
 
 func (sdk *AudiusSdk) GetTopGenreUsers(genre string, query map[string]string) ([]*fullModels.UserFull, error) {
-	dn := sdk.Discovery
 	if query == nil {
 		query = make(map[string]string)
 	}
 	query["genre"] = genre
-	res, err := dn.discoveryFullClient.R().SetQueryParams(query).Get("/users/genre/top")
-	if err != nil {
-		return nil, err
-	}
-	var response fullModels.TopGenreUsersResponseFull
-	err = response.UnmarshalBinary(res.Body())
-	if err != nil {
+	response := new(fullModels.TopGenreUsersResponseFull)
+	if err := DiscoveryFullQuery(sdk, "/users/genre/top", query, response); err != nil {
 		return nil, err
 	}
 

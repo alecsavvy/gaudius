@@ -1,6 +1,7 @@
 package gaudius
 
 import (
+	"encoding"
 	"errors"
 	"fmt"
 	"time"
@@ -46,4 +47,32 @@ func SelectHealthyDiscoveryNode(discoveryNodes []string) (string, error) {
 		}
 	}
 	return "", errors.New("found no healthy discovery nodes")
+}
+
+func DiscoveryQuery[T encoding.BinaryUnmarshaler](sdk *AudiusSdk, path string, query map[string]string, response T) error {
+	dn := sdk.Discovery
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(path)
+	if err != nil {
+		return err
+	}
+	err = response.UnmarshalBinary(res.Body())
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func DiscoveryFullQuery[T encoding.BinaryUnmarshaler](sdk *AudiusSdk, path string, query map[string]string, response T) error {
+	dn := sdk.Discovery
+	res, err := dn.discoveryFullClient.R().SetQueryParams(query).Get(path)
+	if err != nil {
+		return err
+	}
+	err = response.UnmarshalBinary(res.Body())
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
