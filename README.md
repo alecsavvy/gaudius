@@ -152,15 +152,7 @@ func main() {
 - [ ] uploads
 - [ ] blob
 - [ ] image
-- [ ] system
 - [ ] delist
-
-[content internal api](https://github.com/AudiusProject/audius-protocol/blob/main/mediorum/server/server.go#L334-L356)
-
-- [ ] crudr
-- [ ] blobs
-- [ ] metrics
-- [ ] system
 
 [discovery write api](https://docs.audius.org/developers/sdk/)
 
