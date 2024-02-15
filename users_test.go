@@ -3,7 +3,6 @@ package gaudius
 import (
 	"testing"
 
-	"github.com/davecgh/go-spew/spew"
 	"github.com/stretchr/testify/require"
 )
 
@@ -36,5 +35,4 @@ func TestUsers(t *testing.T) {
 	tracks, err := sdk.GetUserTracks(*users[0].ID, map[string]string{"limit": "10", "filter_tracks": "all"})
 	require.Nil(t, err)
 	require.NotEmpty(t, tracks)
-	spew.Dump(tracks)
 }
