@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/alecsavvy/gaudius"
 	"github.com/alecsavvy/gaudius/gen/contracts"
@@ -9,7 +10,10 @@ import (
 )
 
 func main() {
-	sdk := gaudius.NewSdkUnsafe()
+	sdk, err := gaudius.NewSdk()
+	if err != nil {
+		log.Fatal(err)
+	}
 	scanner, stopper := sdk.EventSubscriber()
 
 	events := []*contracts.EntityManagerManageEntity{}

@@ -43,7 +43,10 @@ make example tx-subscriber
 
 ```
 func main() {
-	sdk := gaudius.NewSdkUnsafe()
+	sdk, err := gaudius.NewSdk()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	user, err := sdk.GetUser("1PqKz")
 
@@ -74,7 +77,10 @@ This is an event stream of incoming transactions from audius through the ACDC ne
 
 ```
 func main() {
-	sdk := gaudius.NewSdkUnsafe()
+	sdk, err := gaudius.NewSdk()
+	if err != nil {
+		log.Fatal(err)
+	}
 	scanner, stopper := sdk.EventSubscriber()
 
 	events := []*contracts.EntityManagerManageEntity{}

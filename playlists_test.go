@@ -7,7 +7,8 @@ import (
 )
 
 func TestPlaylists(t *testing.T) {
-	sdk := NewSdkUnsafe()
+	sdk, err := NewSdk()
+	require.Nil(t, err)
 
 	playlistID := "LjErB"
 

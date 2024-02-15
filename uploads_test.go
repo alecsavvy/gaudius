@@ -7,14 +7,16 @@ import (
 )
 
 func TestGetUploads(t *testing.T) {
-	sdk := NewSdkUnsafe()
+	sdk, err := NewSdk()
+	require.Nil(t, err)
 	uploads, err := sdk.GetUploads()
 	require.Nil(t, err)
 	require.NotEmpty(t, uploads)
 }
 
 func TestGetUpload(t *testing.T) {
-	sdk := NewSdkUnsafe()
+	sdk, err := NewSdk()
+	require.Nil(t, err)
 	id := "01H6EJC9XVMQXM7FA4P0AY148T"
 	uploads, err := sdk.GetUpload(id)
 	require.Nil(t, err)

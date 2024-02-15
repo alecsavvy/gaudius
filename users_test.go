@@ -7,7 +7,8 @@ import (
 )
 
 func TestUsers(t *testing.T) {
-	sdk := NewSdkUnsafe()
+	sdk, err := NewSdk()
+	require.Nil(t, err)
 
 	userID := "1PqKz"
 	userHandle := "LemonadeJetpack"

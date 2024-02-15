@@ -18,7 +18,10 @@ func init() {
 }
 
 func main() {
-	sdk := gaudius.NewSdkUnsafe()
+	sdk, err := gaudius.NewSdk()
+	if err != nil {
+		log.Fatal(err)
+	}
 	port := 8080
 
 	// start webserver to receive auth token

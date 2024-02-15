@@ -12,7 +12,10 @@ import (
 )
 
 func main() {
-	sdk := gaudius.NewSdkUnsafe()
+	sdk, err := gaudius.NewSdk()
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	user, err := sdk.GetUser("1PqKz")
 

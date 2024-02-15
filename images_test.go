@@ -8,7 +8,8 @@ import (
 )
 
 func TestGetImage(t *testing.T) {
-	sdk := NewSdkUnsafe()
+	sdk, err := NewSdk()
+	require.Nil(t, err)
 
 	image, err := sdk.GetImage("01H6EJC9XVMQXM7FA4P0AY148T")
 	require.Nil(t, err)

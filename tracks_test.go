@@ -7,7 +7,8 @@ import (
 )
 
 func TestTracks(t *testing.T) {
-	sdk := NewSdkUnsafe()
+	sdk, err := NewSdk()
+	require.Nil(t, err)
 
 	trackID := "W0JP60j"
 
