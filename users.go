@@ -96,9 +96,9 @@ func (sdk *AudiusSdk) GetUserFavorites(id string) ([]*models.Favorite, error) {
 	return resp.Data, nil
 }
 
-func (sdk *AudiusSdk) GetUserReposts(id string) ([]*models.Activity, error) {
+func (sdk *AudiusSdk) GetUserReposts(id string, query map[string]string) ([]*models.Activity, error) {
 	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s/reposts", id))
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(fmt.Sprintf("/users/%s/reposts", id))
 	if err != nil {
 		return nil, err
 	}
@@ -111,9 +111,9 @@ func (sdk *AudiusSdk) GetUserReposts(id string) ([]*models.Activity, error) {
 	return resp.Data, nil
 }
 
-func (sdk *AudiusSdk) GetUserFollowers(id string) ([]*models.User, error) {
+func (sdk *AudiusSdk) GetUserFollowers(id string, query map[string]string) ([]*models.User, error) {
 	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s/followers", id))
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(fmt.Sprintf("/users/%s/followers", id))
 	if err != nil {
 		return nil, err
 	}
@@ -126,9 +126,9 @@ func (sdk *AudiusSdk) GetUserFollowers(id string) ([]*models.User, error) {
 	return resp.Data, nil
 }
 
-func (sdk *AudiusSdk) GetUserFollowing(id string) ([]*models.User, error) {
+func (sdk *AudiusSdk) GetUserFollowing(id string, query map[string]string) ([]*models.User, error) {
 	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s/following", id))
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(fmt.Sprintf("/users/%s/following", id))
 	if err != nil {
 		return nil, err
 	}
@@ -141,9 +141,9 @@ func (sdk *AudiusSdk) GetUserFollowing(id string) ([]*models.User, error) {
 	return resp.Data, nil
 }
 
-func (sdk *AudiusSdk) GetUserSupporters(id string) ([]*models.Supporter, error) {
+func (sdk *AudiusSdk) GetUserSupporters(id string, query map[string]string) ([]*models.Supporter, error) {
 	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s/supporters", id))
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(fmt.Sprintf("/users/%s/supporters", id))
 	if err != nil {
 		return nil, err
 	}
@@ -156,9 +156,9 @@ func (sdk *AudiusSdk) GetUserSupporters(id string) ([]*models.Supporter, error) 
 	return resp.Data, nil
 }
 
-func (sdk *AudiusSdk) GetUserSupporting(id string) ([]*models.Supporting, error) {
+func (sdk *AudiusSdk) GetUserSupporting(id string, query map[string]string) ([]*models.Supporting, error) {
 	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s/supporting", id))
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(fmt.Sprintf("/users/%s/supporting", id))
 	if err != nil {
 		return nil, err
 	}
@@ -171,9 +171,9 @@ func (sdk *AudiusSdk) GetUserSupporting(id string) ([]*models.Supporting, error)
 	return resp.Data, nil
 }
 
-func (sdk *AudiusSdk) GetUserTracks(id string) ([]*models.Track, error) {
+func (sdk *AudiusSdk) GetUserTracks(id string, query map[string]string) ([]*models.Track, error) {
 	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s/tracks", id))
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(fmt.Sprintf("/users/%s/tracks", id))
 	if err != nil {
 		return nil, err
 	}
@@ -186,9 +186,9 @@ func (sdk *AudiusSdk) GetUserTracks(id string) ([]*models.Track, error) {
 	return resp.Data, nil
 }
 
-func (sdk *AudiusSdk) GetRelatedUsers(id string) ([]*models.User, error) {
+func (sdk *AudiusSdk) GetRelatedUsers(id string, query map[string]string) ([]*models.User, error) {
 	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s/related", id))
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(fmt.Sprintf("/users/%s/related", id))
 	if err != nil {
 		return nil, err
 	}
@@ -201,9 +201,9 @@ func (sdk *AudiusSdk) GetRelatedUsers(id string) ([]*models.User, error) {
 	return resp.Data, nil
 }
 
-func (sdk *AudiusSdk) GetUserSubscribers(id string) ([]*models.User, error) {
+func (sdk *AudiusSdk) GetUserSubscribers(id string, query map[string]string) ([]*models.User, error) {
 	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s/subscribers", id))
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(fmt.Sprintf("/users/%s/subscribers", id))
 	if err != nil {
 		return nil, err
 	}
@@ -217,9 +217,9 @@ func (sdk *AudiusSdk) GetUserSubscribers(id string) ([]*models.User, error) {
 }
 
 // most used tags
-func (sdk *AudiusSdk) GetUserTags(id string) ([]string, error) {
+func (sdk *AudiusSdk) GetUserTags(id string, query map[string]string) ([]string, error) {
 	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/%s/tags", id))
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(fmt.Sprintf("/users/%s/tags", id))
 	if err != nil {
 		return nil, err
 	}
@@ -247,9 +247,9 @@ func (sdk *AudiusSdk) GetUserByHandle(handle string) (*models.User, error) {
 	return resp.Data, nil
 }
 
-func (sdk *AudiusSdk) GetUserAiAttributed(handle string) ([]*models.Track, error) {
+func (sdk *AudiusSdk) GetUserAiAttributed(handle string, query map[string]string) ([]*models.Track, error) {
 	dn := sdk.Discovery
-	res, err := dn.discoveryClient.R().Get(fmt.Sprintf("/users/handle/%s/tracks/ai_attributed", handle))
+	res, err := dn.discoveryClient.R().SetQueryParams(query).Get(fmt.Sprintf("/users/handle/%s/tracks/ai_attributed", handle))
 	if err != nil {
 		return nil, err
 	}

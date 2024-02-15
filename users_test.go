@@ -20,7 +20,7 @@ func TestUsers(t *testing.T) {
 	require.Nil(t, err)
 	require.EqualValues(t, userID, *user.ID)
 
-	tracks, err := sdk.GetUserAiAttributed(userHandle)
+	tracks, err := sdk.GetUserAiAttributed(userHandle, nil)
 	require.Nil(t, err)
 	require.Empty(t, tracks)
 
